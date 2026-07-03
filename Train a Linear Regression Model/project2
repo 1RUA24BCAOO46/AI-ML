@@ -1,0 +1,11 @@
+# Features (X) and target (y) 
+X = df[['Hours']]   # Always use double brackets for features 
+y = df['Score'] 
+# Split: 80% for training, 20% for testing 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, 
+random_state=42) 
+# Create and train the model 
+model = LinearRegression() 
+model.fit(X_train, y_train) 
+print(f"Slope (coefficient): {model.coef_[0]:.2f}") 
+print(f"Intercept: {model.intercept_:.2f}") 
