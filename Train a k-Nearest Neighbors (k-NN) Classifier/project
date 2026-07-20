@@ -1,11 +1,27 @@
- 
-from sklearn.neighbors import KNeighborsClassifier 
-# Create k-NN model with k=3 (look at 3 nearest neighbours) 
-knn = KNeighborsClassifier(n_neighbors=3) 
-# Train the model 
-knn.fit(X_train, y_train) 
-# Predict on test set 
-y_pred = knn.predict(X_test) 
-# Check accuracy 
-accuracy = knn.score(X_test, y_test) 
+import pandas as pd
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
+
+# Create a simple dataset (copied from cell 1JETZMpulw77)
+data = {
+'Hours': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+'Score': [35, 45, 48, 52, 60, 68, 75, 82, 88, 95]
+}
+df = pd.DataFrame(data)
+
+# Features (X) and target (y)
+X = df[['Hours']]
+y = df['Score']
+
+# Split: 80% for training, 20% for testing
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create k-NN model with k=3 (look at 3 nearest neighbours)
+knn = KNeighborsClassifier(n_neighbors=3)
+# Train the model
+knn.fit(X_train, y_train)
+# Predict on test set
+y_pred = knn.predict(X_test)
+# Check accuracy
+accuracy = knn.score(X_test, y_test)
 print(f"Test accuracy: {accuracy * 100:.2f}%")
